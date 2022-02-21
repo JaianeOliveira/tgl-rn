@@ -2,7 +2,13 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { InitialPage, LoginPage } from "screens";
+import {
+  InitialPage,
+  LoginPage,
+  RegistrationPage,
+  ResetPasswordPage,
+  ChangePasswordPage,
+} from "screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +24,29 @@ const AuthRoutes = () => {
           }}
         />
         <Stack.Screen
-          name="LoginPage"
+          name="Login"
           component={LoginPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Registration"
+          component={RegistrationPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ResetPassword"
+          component={ResetPasswordPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ChangePassword"
+          component={ChangePasswordPage}
           options={{
             headerShown: false,
           }}

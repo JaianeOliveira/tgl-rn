@@ -10,3 +10,11 @@ export const Title = styled.Text`
   text-align: center;
   font-family: "Roboto_700Bold_Italic";
 `;
+
+export const Card = styled.View`
+  width: 80%;
+  background-color: #fff;
+  border-radius: 14px;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.2);
+`;

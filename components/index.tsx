@@ -1,12 +1,4 @@
-import { View, Text } from "react-native";
-import React from "react";
+import Input from "./Input";
+import AuthButton from "./AuthButton";
 
-const InitialTitle = () => {
-  return (
-    <View>
-      <Text>InitialTitle</Text>
-    </View>
-  );
-};
-
-export default InitialTitle;
+export { Input, AuthButton };

@@ -25,7 +25,7 @@ const InitialPage = ({ navigation }: any) => {
       <SecondTitle>Lottery</SecondTitle>
       <LoginButton
         activeOpacity={0.8}
-        onPress={() => navigation.navigate("LoginPage")}
+        onPress={() => navigation.navigate("Login")}
       >
         <LoginButtonText>Login</LoginButtonText>
       </LoginButton>
