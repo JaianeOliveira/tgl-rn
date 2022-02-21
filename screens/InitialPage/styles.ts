@@ -15,7 +15,7 @@ export const FirstTitle = styled(Title)`
 export const SecondTitle = styled(Title)`
   font-size: 75px;
   text-transform: uppercase;
-  margin: 22px 0;
+  margin: 6% 0;
 `;
 
 export const TextHighlight = styled.View`
@@ -25,7 +25,7 @@ export const TextHighlight = styled.View`
   background-color: ${Colors.greenPrimary};
   justify-content: center;
   align-items: center;
-  margin: 44px 0 22px 0;
+  margin: 8% 0 0 0;
 `;
 
 export const ForTitle = styled(Title)`
@@ -40,7 +40,7 @@ export const LoginButton = styled.TouchableOpacity`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  margin-top: 55px;
+  margin-top: 8%;
 `;
 export const LoginButtonText = styled(ForTitle)`
   font-size: 30px;

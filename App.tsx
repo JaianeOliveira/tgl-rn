@@ -1,11 +1,11 @@
 import React from "react";
 import AppLoading from "expo-app-loading";
 
-import { InitialPage, LoginPage } from "./screens";
-
 import { ThemeProvider } from "styled-components";
 
 import Colors from "global/constants/colors";
+
+import AuthRoutes from "./Routes/AuthRoutes";
 
 import {
   useFonts,
@@ -22,34 +22,6 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
-
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-const Stack = createNativeStackNavigator();
-
-export const Routes = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="InitialPage"
-          component={InitialPage}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="LoginPage"
-          component={LoginPage}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -72,7 +44,7 @@ export default function App() {
   } else {
     return (
       <ThemeProvider theme={Colors}>
-        <Routes />
+        <AuthRoutes />
       </ThemeProvider>
     );
   }
