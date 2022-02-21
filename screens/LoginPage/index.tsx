@@ -2,13 +2,13 @@ import { View, Text } from "react-native";
 import React from "react";
 
 import { Title } from "./styles";
-import { Screen } from "@global/styles";
+import { DefaultScreen } from "global/styles";
 
 const LoginPage = () => {
   return (
-    <Screen>
+    <DefaultScreen>
       <Title>LoginPage</Title>
-    </Screen>
+    </DefaultScreen>
   );
 };
 

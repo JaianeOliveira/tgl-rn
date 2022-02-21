@@ -22,9 +22,9 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@global/*": ["global/*"],
-      "@screens/*": ["./screens/*"]
+      "components/*": ["components/*"],
+      "global/*": ["global/*"],
+      "screens/*": ["./screens/*"]
     }
   },
   "exclude": [

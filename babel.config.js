@@ -9,9 +9,9 @@ module.exports = function (api) {
           root: ["."],
           extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
           alias: {
-            "@components/*": ["./components/*"],
-            "@global/*": ["./global/*"],
-            "@screens/*": ["./screens/*"],
+            "components/*": ["./components/*"],
+            "global/*": ["./global/*"],
+            "screens/*": ["./screens/*"],
           },
         },
       ],
