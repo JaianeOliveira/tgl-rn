@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 
 import { Title } from "./styles";
-import { Screen } from "../../global/styles";
+import { Screen } from "@global/styles";
 
 const LoginPage = () => {
   return (
