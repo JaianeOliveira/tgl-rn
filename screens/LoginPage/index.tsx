@@ -33,6 +33,7 @@ const LoginPage = ({ navigation }: any) => {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -43,6 +44,7 @@ const LoginPage = ({ navigation }: any) => {
 
   const submit = (data: any) => {
     console.log(data);
+    reset();
     navigation.navigate("Home");
   };
 
