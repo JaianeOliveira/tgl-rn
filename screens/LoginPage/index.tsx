@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 
 import {
@@ -15,14 +15,71 @@ import { Input } from "components";
 import { AntDesign } from "@expo/vector-icons";
 
 import Colors from "global/constants/colors";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+const schema = Yup.object({
+  email: Yup.string()
+    .email("Digite um email válido")
+    .required("Digite um email"),
+  password: Yup.string()
+    .required("Digite uma senha")
+    .min(4, "Digite uma senha válida"),
+});
 
 const LoginPage = ({ navigation }: any) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const submit = (data: any) => {
+    console.log(data);
+    navigation.navigate("Home");
+  };
+
   return (
     <Screen>
       <PageTitle>Authentication</PageTitle>
       <Card style={styles.boxShadow}>
-        <Input title="Email" />
-        <Input title="Password" />
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title="Email"
+              onChange={onChange}
+              value={value}
+              errorMessage={errors.email?.message}
+            />
+          )}
+          name="email"
+        />
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              title="Password"
+              onChange={onChange}
+              value={value}
+              errorMessage={errors.password?.message}
+            />
+          )}
+          name="password"
+        />
         <ForgetPasswordButton
           onPress={() => navigation.navigate("ResetPassword")}
         >
@@ -30,7 +87,7 @@ const LoginPage = ({ navigation }: any) => {
             I forget my password
           </ForgetPasswordButtonText>
         </ForgetPasswordButton>
-        <AuthButton>
+        <AuthButton onPress={handleSubmit(submit)}>
           <ButtonText green={true}> Log In</ButtonText>
           <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
         </AuthButton>

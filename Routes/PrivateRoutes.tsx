@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { InitialPage, LoginPage } from "screens";
+import { HomePage } from "screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,15 +11,8 @@ const PrivateRoutes = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="InitialPage"
-          component={InitialPage}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="LoginPage"
-          component={LoginPage}
+          name="Home"
+          component={HomePage}
           options={{
             headerShown: false,
           }}

@@ -8,6 +8,7 @@ import {
   RegistrationPage,
   ResetPasswordPage,
   ChangePasswordPage,
+  HomePage,
 } from "screens";
 
 const Stack = createNativeStackNavigator();
@@ -47,6 +48,14 @@ const AuthRoutes = () => {
         <Stack.Screen
           name="ChangePassword"
           component={ChangePasswordPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        {/* provisório */}
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
           options={{
             headerShown: false,
           }}
