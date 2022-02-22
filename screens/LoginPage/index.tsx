@@ -19,16 +19,17 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const schema = Yup.object({
-  email: Yup.string()
-    .email("Digite um email válido")
-    .required("Digite um email"),
-  password: Yup.string()
-    .required("Digite uma senha")
-    .min(4, "Digite uma senha válida"),
-});
-
 const LoginPage = ({ navigation }: any) => {
+  const schema = Yup.object({
+    email: Yup.string()
+      .trim()
+      .email("Digite um email válido")
+      .required("Digite um email"),
+    password: Yup.string()
+      .trim()
+      .required("Digite uma senha")
+      .min(4, "Digite uma senha válida"),
+  });
   const {
     control,
     handleSubmit,

@@ -16,9 +16,11 @@ import * as Yup from "yup";
 const schema = Yup.object({
   name: Yup.string().required("Digite um nome válido"),
   email: Yup.string()
+    .trim()
     .email("Digite um email válido")
     .required("Digite um email"),
   password: Yup.string()
+    .trim()
     .required("Digite uma senha")
     .min(4, "Digite uma senha válida"),
 });

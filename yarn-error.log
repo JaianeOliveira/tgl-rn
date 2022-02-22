@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\SAMSUNG\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add expo-font@~10.0.4 @expo-google-fonts/Roboto
+  C:\Program Files\nodejs\node.exe C:\Users\SAMSUNG\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add axios]
 
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\SAMSUNG\AppData\Local\Microsoft\WindowsApps;C:\Users\SAMSUNG\AppData\Roaming\npm;C:\Users\SAMSUNG\AppData\Local\Programs\Microsoft VS Code\bin;
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@expo-google-fonts%2fRoboto: Not found
+  Error: https://registry.yarnpkg.com/axios]: Not found
       at Request.params.callback [as _callback] (C:\Users\SAMSUNG\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
       at Request.self.callback (C:\Users\SAMSUNG\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
       at Request.emit (node:events:390:28)
@@ -39,18 +39,25 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+      "@expo-google-fonts/roboto": "^0.2.2",
+      "@hookform/resolvers": "^2.8.8",
       "@react-navigation/native": "^6.0.8",
+      "@react-navigation/native-stack": "^6.5.0",
       "@reduxjs/toolkit": "^1.7.2",
       "@types/styled-components-react-native": "^5.1.3",
       "expo": "~44.0.0",
+      "expo-app-loading": "~1.3.0",
+      "expo-font": "~10.0.4",
       "expo-status-bar": "~1.2.0",
       "react": "17.0.1",
       "react-dom": "17.0.1",
+      "react-hook-form": "^7.27.1",
       "react-native": "0.64.3",
       "react-native-safe-area-context": "3.3.2",
       "react-native-screens": "~3.10.1",
       "react-native-web": "0.17.1",
-      "styled-components": "^5.3.3"
+      "styled-components": "^5.3.3",
+      "yup": "^0.32.11"
     },
     "devDependencies": {
       "@babel/core": "^7.12.9",
@@ -1082,7 +1089,7 @@ Lockfile:
       pirates "^4.0.5"
       source-map-support "^0.5.16"
   
-  "@babel/runtime@^7.14.0", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+  "@babel/runtime@^7.14.0", "@babel/runtime@^7.15.4", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
     version "7.17.2"
     resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.17.2.tgz"
     integrity sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw==
@@ -1152,6 +1159,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.7.5.tgz"
     integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
   
+  "@expo-google-fonts/roboto@^0.2.2":
+    version "0.2.2"
+    resolved "https://registry.yarnpkg.com/@expo-google-fonts/roboto/-/roboto-0.2.2.tgz#0a9f4685e8d02bdb0d2d2919c102f531bdb353d4"
+    integrity sha512-qP0oZsR8rTID5T9wEXSt9yCYMnKYKlvIlrJGGpd+t71Obt2J51+51PBpvxd5c8fpABEru3zx6ENmpU9lzwr8zw==
+  
   "@expo/config-plugins@4.0.18", "@expo/config-plugins@^4.0.2":
     version "4.0.18"
     resolved "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-4.0.18.tgz"
@@ -1205,6 +1217,23 @@ Lockfile:
     resolved "https://registry.npmjs.org/@expo/config-types/-/config-types-44.0.0.tgz"
     integrity sha512-d+gpdKOAhqaD5RmcMzGgKzNtvE1w+GCqpFQNSXLliYlXjj+Tv0eL8EPeAdPtvke0vowpPFwd5McXLA90dgY6Jg==
   
+  "@expo/config@6.0.18", "@expo/config@^6.0.6":
+    version "6.0.18"
+    resolved "https://registry.npmjs.org/@expo/config/-/config-6.0.18.tgz"
+    integrity sha512-60z0YICI9eJWlvajl/Wgq8+lKm0jfkZOMdATDQtWz6GvWshUxd+A8EYhtgjJ9eWMGqOYkwrCpRNLHz5TZtCKWA==
+    dependencies:
+      "@babel/code-frame" "~7.10.4"
+      "@expo/config-plugins" "4.0.18"
+      "@expo/config-types" "^44.0.0"
+      "@expo/json-file" "8.2.34"
+      getenv "^1.0.0"
+      glob "7.1.6"
+      require-from-string "^2.0.2"
+      resolve-from "^5.0.0"
+      semver "7.3.2"
+      slugify "^1.3.4"
+      sucrase "^3.20.0"
+  
   "@expo/config@6.0.6":
     version "6.0.6"
     resolved "https://registry.npmjs.org/@expo/config/-/config-6.0.6.tgz"
@@ -1222,22 +1251,36 @@ Lockfile:
       slugify "^1.3.4"
       sucrase "^3.20.0"
   
-  "@expo/config@^6.0.6":
-    version "6.0.18"
-    resolved "https://registry.npmjs.org/@expo/config/-/config-6.0.18.tgz"
-    integrity sha512-60z0YICI9eJWlvajl/Wgq8+lKm0jfkZOMdATDQtWz6GvWshUxd+A8EYhtgjJ9eWMGqOYkwrCpRNLHz5TZtCKWA==
+  "@expo/configure-splash-screen@^0.6.0":
+    version "0.6.0"
+    resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.6.0.tgz#07d97ee512fd859fcc09506ba3762fd6263ebc39"
+    integrity sha512-4DyPoNXJqx9bN4nEwF3HQreo//ECu7gDe1Xor3dnnzFm9P/VDxAKdbEhA0n+R6fgkNfT2onVHWijqvdpTS3Xew==
     dependencies:
-      "@babel/code-frame" "~7.10.4"
-      "@expo/config-plugins" "4.0.18"
-      "@expo/config-types" "^44.0.0"
-      "@expo/json-file" "8.2.34"
+      color-string "^1.5.3"
+      commander "^5.1.0"
+      fs-extra "^9.0.0"
+      glob "^7.1.6"
+      lodash "^4.17.15"
+      pngjs "^5.0.0"
+      xcode "^3.0.0"
+      xml-js "^1.6.11"
+  
+  "@expo/image-utils@0.3.18":
+    version "0.3.18"
+    resolved "https://registry.yarnpkg.com/@expo/image-utils/-/image-utils-0.3.18.tgz#36a41ab2925974ac5707e02cb0d3694349140497"
+    integrity sha512-77/ub2aGuf7SYfaFhvCHE54Hs/jRuU5j+pemS5seLfVHNwHbJSse91TMhsTLLNz3GwwqTxFVe3KMycSccJ73nA==
+    dependencies:
+      "@expo/spawn-async" "1.5.0"
+      chalk "^4.0.0"
+      fs-extra "9.0.0"
       getenv "^1.0.0"
-      glob "7.1.6"
-      require-from-string "^2.0.2"
+      jimp-compact "0.16.1"
+      mime "^2.4.4"
+      node-fetch "^2.6.0"
+      parse-png "^2.1.0"
       resolve-from "^5.0.0"
       semver "7.3.2"
-      slugify "^1.3.4"
-      sucrase "^3.20.0"
+      tempy "0.3.0"
   
   "@expo/json-file@8.2.33":
     version "8.2.33"
@@ -1286,10 +1329,34 @@ Lockfile:
       base64-js "^1.2.3"
       xmlbuilder "^14.0.0"
   
+  "@expo/prebuild-config@^3.0.15":
+    version "3.0.18"
+    resolved "https://registry.yarnpkg.com/@expo/prebuild-config/-/prebuild-config-3.0.18.tgz#5eb0358edc0173e9809f515cc1a280c48943cc73"
+    integrity sha512-Eyb+HJCsxYba2sWlDi3rqXWQ3jDjN41rSiYmvApY121Zqdrrj/384ntHZh6cbz0LWPeHXjPZBM3SDbK0ri9FTw==
+    dependencies:
+      "@expo/config" "6.0.18"
+      "@expo/config-plugins" "4.0.18"
+      "@expo/config-types" "^44.0.0"
+      "@expo/image-utils" "0.3.18"
+      "@expo/json-file" "8.2.34"
+      debug "^4.3.1"
+      expo-modules-autolinking "~0.5.1"
+      fs-extra "^9.0.0"
+      resolve-from "^5.0.0"
+      semver "7.3.2"
+      xml2js "0.4.23"
+  
   "@expo/sdk-runtime-versions@^1.0.0":
     version "1.0.0"
     resolved "https://registry.npmjs.org/@expo/sdk-runtime-versions/-/sdk-runtime-versions-1.0.0.tgz"
     integrity sha512-Doz2bfiPndXYFPMRwPyGa1k5QaKDVpY806UJj570epIiMzWaYyCtobasyfC++qfIXVb5Ocy7r3tP9d62hAQ7IQ==
+  
+  "@expo/spawn-async@1.5.0":
+    version "1.5.0"
+    resolved "https://registry.yarnpkg.com/@expo/spawn-async/-/spawn-async-1.5.0.tgz#799827edd8c10ef07eb1a2ff9dcfe081d596a395"
+    integrity sha512-LB7jWkqrHo+5fJHNrLAFdimuSXQ2MQ4lA7SQW5bf/HbsXuV2VrT/jN/M8f/KoWt0uJMGN4k/j7Opx4AvOOxSew==
+    dependencies:
+      cross-spawn "^6.0.5"
   
   "@expo/vector-icons@^12.0.4":
     version "12.0.5"
@@ -1314,6 +1381,11 @@ Lockfile:
     integrity sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==
     dependencies:
       "@hapi/hoek" "^9.0.0"
+  
+  "@hookform/resolvers@^2.8.8":
+    version "2.8.8"
+    resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-2.8.8.tgz#17cf806485435877fdafce9f3bee6ff68f7f87b6"
+    integrity sha512-meAEDur1IJBfKyTo9yPYAuzjIfrxA7m9Ov+1nxaW/YupsqMeseWifoUjWK03+hz/RJizsVQAaUjVxFEkyu0GWg==
   
   "@jest/create-cache-key-function@^26.5.0":
     version "26.6.2"
@@ -1527,6 +1599,19 @@ Lockfile:
       query-string "^7.0.0"
       react-is "^16.13.0"
   
+  "@react-navigation/elements@^1.3.1":
+    version "1.3.1"
+    resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.1.tgz#aacb08fe0ca4db50f0ed16b72906869ce770edf4"
+    integrity sha512-jIDRJaG8YPIinl4hZXJu/W3TnhDe8hLYmGSEdL1mxZ1aoNMiApCBYkgTy11oq0EfK/koZd3DPSkJNbzBAQmPJw==
+  
+  "@react-navigation/native-stack@^6.5.0":
+    version "6.5.0"
+    resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-6.5.0.tgz#332ac7c736e2c2a2d961b324085957c3db79e1d2"
+    integrity sha512-X2sV+AKkqEl7k0ltjN4lMBfx+FsynrnUWkCTGiROyMRo4yWElK1jY3XSTsj5Cpso2/MUHdf9v/AOw0EgU58FsA==
+    dependencies:
+      "@react-navigation/elements" "^1.3.1"
+      warn-once "^0.1.0"
+  
   "@react-navigation/native@^6.0.8":
     version "6.0.8"
     resolved "https://registry.npmjs.org/@react-navigation/native/-/native-6.0.8.tgz"
@@ -1604,6 +1689,11 @@ Lockfile:
     integrity sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==
     dependencies:
       "@types/istanbul-lib-report" "*"
+  
+  "@types/lodash@^4.14.175":
+    version "4.14.178"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.178.tgz#341f6d2247db528d4a13ddbb374bcdc80406f4f8"
+    integrity sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==
   
   "@types/node@*":
     version "17.0.18"
@@ -2271,10 +2361,18 @@ Lockfile:
     resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz"
     integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
   
-  color-name@~1.1.4:
+  color-name@^1.0.0, color-name@~1.1.4:
     version "1.1.4"
     resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz"
     integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
+  
+  color-string@^1.5.3:
+    version "1.9.0"
+    resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.9.0.tgz#63b6ebd1bec11999d1df3a79a7569451ac2be8aa"
+    integrity sha512-9Mrz2AQLefkH1UvASKj6v6hj/7eWgjnT/cVsR8CumieLoT+g900exWeNogqtweI8dxloXN9BDQTYro1oWu/5CQ==
+    dependencies:
+      color-name "^1.0.0"
+      simple-swizzle "^0.2.2"
   
   colorette@^1.0.7:
     version "1.4.0"
@@ -2300,6 +2398,11 @@ Lockfile:
     version "4.1.1"
     resolved "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz"
     integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
+  
+  commander@^5.1.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
+    integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
   
   commander@^7.2.0:
     version "7.2.0"
@@ -2426,6 +2529,11 @@ Lockfile:
       semver "^5.5.0"
       shebang-command "^1.2.0"
       which "^1.2.9"
+  
+  crypto-random-string@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
+    integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
   
   css-color-keywords@^1.0.0:
     version "1.0.0"
@@ -2671,6 +2779,13 @@ Lockfile:
       snapdragon "^0.8.1"
       to-regex "^3.0.1"
   
+  expo-app-loading@~1.3.0:
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/expo-app-loading/-/expo-app-loading-1.3.0.tgz#2023f11e1420d423478474942c0d1c74e1afa335"
+    integrity sha512-IbMI1w2a79IXw2uH/dgwxWmXW9uR5DNjY/mDKdUCGR0tjMeeliZRq66gGdRLgCkfXS2b2WMIi03gB05l7SiQeg==
+    dependencies:
+      expo-splash-screen "~0.14.0"
+  
   expo-application@~4.0.2:
     version "4.0.2"
     resolved "https://registry.npmjs.org/expo-application/-/expo-application-4.0.2.tgz"
@@ -2708,7 +2823,7 @@ Lockfile:
       "@expo/config-plugins" "^4.0.2"
       uuid "^3.4.0"
   
-  expo-font@~10.0.5:
+  expo-font@~10.0.4, expo-font@~10.0.5:
     version "10.0.5"
     resolved "https://registry.npmjs.org/expo-font/-/expo-font-10.0.5.tgz"
     integrity sha512-x9YwM0xLkDdSvFjeNbyuh33Q1Hk3uc2jbMuuAN5W2ZVcUZqG0M8GCX/KV/D/7rYqdXKbliQA5r44MyDwZe/XRw==
@@ -2720,7 +2835,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-10.0.2.tgz"
     integrity sha512-Ro1lgyKldbFs4mxhWM+goX9sg0S2SRR8FiJJeOvaRzf8xNhrZfWA00Zpr+/3ocCoWQ3eEL+X9UF4PXXHf0KoOg==
   
-  expo-modules-autolinking@0.5.5:
+  expo-modules-autolinking@0.5.5, expo-modules-autolinking@~0.5.1:
     version "0.5.5"
     resolved "https://registry.npmjs.org/expo-modules-autolinking/-/expo-modules-autolinking-0.5.5.tgz"
     integrity sha512-bILEG0Fg+ZhIhdEaShHzsEN1WC0hUmXJ5Kcd4cd+8rVk1Ead9vRZxA/yLx1cNBDCOwMe0GAMrhF7TKT+A1P+YA==
@@ -2738,6 +2853,14 @@ Lockfile:
     dependencies:
       compare-versions "^3.4.0"
       invariant "^2.2.4"
+  
+  expo-splash-screen@~0.14.0:
+    version "0.14.2"
+    resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.14.2.tgz#2598d6980e71ecd8b7467ca821fb9dbfb80f355b"
+    integrity sha512-X25D/0E2AWEFGgDWIVXZ5Bl7FhYk7TgVhEWvplBqrDY7G7vg5l1aoH6PelOQINWPsa1dcRyA7REdN2ltO+0LAw==
+    dependencies:
+      "@expo/configure-splash-screen" "^0.6.0"
+      "@expo/prebuild-config" "^3.0.15"
   
   expo-status-bar@~1.2.0:
     version "1.2.0"
@@ -3002,7 +3125,7 @@ Lockfile:
       jsonfile "^4.0.0"
       universalify "^0.1.0"
   
-  fs-extra@^9.1.0:
+  fs-extra@^9.0.0, fs-extra@^9.1.0:
     version "9.1.0"
     resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-9.1.0.tgz"
     integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
@@ -3278,6 +3401,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/is-arrayish/-/is-arrayish-0.2.1.tgz"
     integrity sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=
   
+  is-arrayish@^0.3.1:
+    version "0.3.2"
+    resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.3.2.tgz#4574a2ae56f7ab206896fb431eaeed066fdf8f03"
+    integrity sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==
+  
   is-buffer@^1.1.5:
     version "1.1.6"
     resolved "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz"
@@ -3509,6 +3637,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/jetifier/-/jetifier-1.6.8.tgz"
     integrity sha512-3Zi16h6L5tXDRQJTb221cnRoVG9/9OvreLdLU2/ZjRv/GILL+2Cemt0IKvkowwkDpvouAU1DQPOJ7qaiHeIdrw==
   
+  jimp-compact@0.16.1:
+    version "0.16.1"
+    resolved "https://registry.yarnpkg.com/jimp-compact/-/jimp-compact-0.16.1.tgz#9582aea06548a2c1e04dd148d7c3ab92075aefa3"
+    integrity sha512-dZ6Ra7u1G8c4Letq/B5EzAxj4tLFHL+cGtdpR+PVm4yzPDj+lCk+AbivWt1eOM+ikzkowtyV7qSqX6qr3t71Ww==
+  
   joi@^17.2.1:
     version "17.6.0"
     resolved "https://registry.npmjs.org/joi/-/joi-17.6.0.tgz"
@@ -3693,6 +3826,11 @@ Lockfile:
     dependencies:
       p-locate "^5.0.0"
   
+  lodash-es@^4.17.21:
+    version "4.17.21"
+    resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+    integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+  
   lodash._reinterpolate@^3.0.0:
     version "3.0.0"
     resolved "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz"
@@ -3748,7 +3886,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz"
     integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
   
-  lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15:
+  lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.21:
     version "4.17.21"
     resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
     integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -4133,7 +4271,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
     integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
   
-  mime@^2.4.1:
+  mime@^2.4.1, mime@^2.4.4:
     version "2.6.0"
     resolved "https://registry.npmjs.org/mime/-/mime-2.6.0.tgz"
     integrity sha512-USPkMeET31rOMiarsBNIHZKLGgvKc/LrjofAnBlOttf5ajRvqiRA8QsenbcooctK6d6Ts6aqZXBA+XbkKthiQg==
@@ -4193,6 +4331,11 @@ Lockfile:
       any-promise "^1.0.0"
       object-assign "^4.0.1"
       thenify-all "^1.0.0"
+  
+  nanoclone@^0.2.1:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/nanoclone/-/nanoclone-0.2.1.tgz#dd4090f8f1a110d26bb32c49ed2f5b9235209ed4"
+    integrity sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
   
   nanoid@^3.1.23:
     version "3.3.1"
@@ -4458,6 +4601,13 @@ Lockfile:
       error-ex "^1.3.1"
       json-parse-better-errors "^1.0.1"
   
+  parse-png@^2.1.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/parse-png/-/parse-png-2.1.0.tgz#2a42ad719fedf90f81c59ebee7ae59b280d6b338"
+    integrity sha512-Nt/a5SfCLiTnQAjx3fHlqp8hRgTL3z7kTQZzvIMS9uCAepnCyjpdEc6M/sz69WqMBdaDBw9sF1F1UaHROYzGkQ==
+    dependencies:
+      pngjs "^3.3.0"
+  
   parseurl@~1.3.3:
     version "1.3.3"
     resolved "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz"
@@ -4540,6 +4690,16 @@ Lockfile:
       base64-js "^1.5.1"
       xmlbuilder "^9.0.7"
   
+  pngjs@^3.3.0:
+    version "3.4.0"
+    resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
+    integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
+  
+  pngjs@^5.0.0:
+    version "5.0.0"
+    resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-5.0.0.tgz#e79dd2b215767fd9c04561c01236df960bce7fbb"
+    integrity sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==
+  
   posix-character-classes@^0.1.0:
     version "0.1.1"
     resolved "https://registry.npmjs.org/posix-character-classes/-/posix-character-classes-0.1.1.tgz"
@@ -4596,6 +4756,11 @@ Lockfile:
       object-assign "^4.1.1"
       react-is "^16.13.1"
   
+  property-expr@^2.0.4:
+    version "2.0.5"
+    resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
+    integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
+  
   pump@^3.0.0:
     version "3.0.0"
     resolved "https://registry.npmjs.org/pump/-/pump-3.0.0.tgz"
@@ -4650,6 +4815,11 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.npmjs.org/react-freeze/-/react-freeze-1.0.0.tgz"
     integrity sha512-yQaiOqDmoKqks56LN9MTgY06O0qQHgV4FUrikH357DydArSZHQhl0BJFqGKIZoTqi8JizF9Dxhuk1FIZD6qCaw==
+  
+  react-hook-form@^7.27.1:
+    version "7.27.1"
+    resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.27.1.tgz#fe5fbcb6bf58751f66d9569e998d671480cc57f6"
+    integrity sha512-N3a7A6zIQ8DJeThisVZGtOUabTbJw+7DHJidmB9w8m3chckv2ZWKb5MHps9d2pPJqmCDoWe53Bos56bYmJms5w==
   
   react-is@^16.13.0, react-is@^16.13.1, react-is@^16.7.0:
     version "16.13.1"
@@ -4990,7 +5160,7 @@ Lockfile:
       minimist "^1.1.1"
       walker "~1.0.5"
   
-  sax@>=0.6.0, sax@^1.2.1:
+  sax@>=0.6.0, sax@^1.2.1, sax@^1.2.4:
     version "1.2.4"
     resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz"
     integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
@@ -5150,6 +5320,13 @@ Lockfile:
       bplist-creator "0.1.0"
       bplist-parser "0.3.0"
       plist "^3.0.4"
+  
+  simple-swizzle@^0.2.2:
+    version "0.2.2"
+    resolved "https://registry.yarnpkg.com/simple-swizzle/-/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
+    integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
+    dependencies:
+      is-arrayish "^0.3.1"
   
   sisteransi@^1.0.5:
     version "1.0.5"
@@ -5383,6 +5560,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
     integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
   
+  temp-dir@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"
+    integrity sha1-CnwOom06Oa+n4OvqnB/AvE2qAR0=
+  
   temp@0.8.3:
     version "0.8.3"
     resolved "https://registry.npmjs.org/temp/-/temp-0.8.3.tgz"
@@ -5397,6 +5579,15 @@ Lockfile:
     integrity sha512-s0ZZzd0BzYv5tLSptZooSjK8oj6C+c19p7Vqta9+6NPOf7r+fxq0cJe6/oN4LTC79sy5NY8ucOJNgwsKCSbfqg==
     dependencies:
       rimraf "~2.6.2"
+  
+  tempy@0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/tempy/-/tempy-0.3.0.tgz#6f6c5b295695a16130996ad5ab01a8bd726e8bf8"
+    integrity sha512-WrH/pui8YCwmeiAoxV+lpRH9HpRtgBhSR2ViBPgpGb/wnYDzp21R4MN45fsCGvLROvY67o3byhJRYRONJyImVQ==
+    dependencies:
+      temp-dir "^1.0.0"
+      type-fest "^0.3.1"
+      unique-string "^1.0.0"
   
   thenify-all@^1.0.0:
     version "1.6.0"
@@ -5472,6 +5663,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz"
     integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
   
+  toposort@^2.0.2:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+    integrity sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
+  
   tr46@~0.0.3:
     version "0.0.3"
     resolved "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz"
@@ -5486,6 +5682,11 @@ Lockfile:
     version "2.3.1"
     resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
     integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+  
+  type-fest@^0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.3.1.tgz#63d00d204e059474fe5e1b7c011112bbd1dc29e1"
+    integrity sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ==
   
   type-fest@^0.7.1:
     version "0.7.1"
@@ -5547,6 +5748,13 @@ Lockfile:
       get-value "^2.0.6"
       is-extendable "^0.1.1"
       set-value "^2.0.1"
+  
+  unique-string@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/unique-string/-/unique-string-1.0.0.tgz#9e1057cca851abb93398f8b33ae187b99caec11a"
+    integrity sha1-nhBXzKhRq7kzmPizOuGHuZyuwRo=
+    dependencies:
+      crypto-random-string "^1.0.0"
   
   universalify@^0.1.0:
     version "0.1.2"
@@ -5731,13 +5939,20 @@ Lockfile:
       simple-plist "^1.0.0"
       uuid "^3.3.2"
   
-  xcode@^3.0.1:
+  xcode@^3.0.0, xcode@^3.0.1:
     version "3.0.1"
     resolved "https://registry.npmjs.org/xcode/-/xcode-3.0.1.tgz"
     integrity sha512-kCz5k7J7XbJtjABOvkc5lJmkiDh8VhjVCGNiqdKCscmVpdVUpEAyXv1xmCLkQJ5dsHqx3IPO4XW+NTDhU/fatA==
     dependencies:
       simple-plist "^1.1.0"
       uuid "^7.0.3"
+  
+  xml-js@^1.6.11:
+    version "1.6.11"
+    resolved "https://registry.yarnpkg.com/xml-js/-/xml-js-1.6.11.tgz#927d2f6947f7f1c19a316dd8eea3614e8b18f8e9"
+    integrity sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==
+    dependencies:
+      sax "^1.2.4"
   
   xml2js@0.4.23:
     version "0.4.23"
@@ -5813,3 +6028,16 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
     integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+  
+  yup@^0.32.11:
+    version "0.32.11"
+    resolved "https://registry.yarnpkg.com/yup/-/yup-0.32.11.tgz#d67fb83eefa4698607982e63f7ca4c5ed3cf18c5"
+    integrity sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==
+    dependencies:
+      "@babel/runtime" "^7.15.4"
+      "@types/lodash" "^4.14.175"
+      lodash "^4.17.21"
+      lodash-es "^4.17.21"
+      nanoclone "^0.2.1"
+      property-expr "^2.0.4"
+      toposort "^2.0.2"
