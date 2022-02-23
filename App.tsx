@@ -23,6 +23,9 @@ import {
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 
+import MyStore from "global/statesManager/MyStore";
+import { Provider as ReduxProvider } from "react-redux";
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,
@@ -43,9 +46,11 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <ThemeProvider theme={Colors}>
-        <AuthRoutes />
-      </ThemeProvider>
+      <ReduxProvider store={MyStore}>
+        <ThemeProvider theme={Colors}>
+          <AuthRoutes />
+        </ThemeProvider>
+      </ReduxProvider>
     );
   }
 }

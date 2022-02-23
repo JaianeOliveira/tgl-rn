@@ -21,6 +21,8 @@ import * as Yup from "yup";
 
 import { authServices } from "services";
 
+import axios from "axios";
+
 const LoginPage = ({ navigation }: any) => {
   const { loginUser } = authServices();
 
@@ -47,8 +49,7 @@ const LoginPage = ({ navigation }: any) => {
     },
   });
 
-  const submit = (data: any) => {
-    console.log(data);
+  const submit = (data: { email: string; password: string }) => {
     reset();
     loginUser(data)
       .then((response) => {
@@ -56,7 +57,7 @@ const LoginPage = ({ navigation }: any) => {
           console.log(response);
           navigation.navigate("Home");
         } else {
-          console.log("Erro");
+          console.log(response);
         }
       })
       .catch((err) => console.log(err));
