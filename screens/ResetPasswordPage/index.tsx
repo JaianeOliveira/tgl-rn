@@ -13,7 +13,11 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
+import { authServices } from "services";
+
 const ResetPasswordPage = ({ navigation }: any) => {
+  const { resetPassword } = authServices();
+
   const schema = Yup.object({
     email: Yup.string()
       .required("Digite um email")
@@ -31,6 +35,14 @@ const ResetPasswordPage = ({ navigation }: any) => {
       email: "",
     },
   });
+
+  const resetHandler = ({ email }: { email: string }) => {
+    resetPassword(email).then((response) => {
+      if (response.token) {
+        navigation.navigate("ChangePassword", { token: response.token });
+      }
+    });
+  };
   return (
     <Screen>
       <PageTitle>Registration</PageTitle>
@@ -50,9 +62,7 @@ const ResetPasswordPage = ({ navigation }: any) => {
           )}
           name="email"
         />
-        <AuthButton
-          onPress={handleSubmit(() => navigation.navigate("ChangePassword"))}
-        >
+        <AuthButton onPress={handleSubmit(resetHandler)}>
           <ButtonText green={true}> Send Link</ButtonText>
           <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
         </AuthButton>

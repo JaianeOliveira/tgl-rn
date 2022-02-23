@@ -19,7 +19,7 @@ const authServices = () => {
   async function changePassword(token: string, password: string) {
     return api
       .post(`/reset/${token}`, { password: password })
-      .then((response) => response.data);
+      .then((response) => response);
   }
 
   return { loginUser, resetPassword, changePassword };

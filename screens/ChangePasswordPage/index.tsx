@@ -13,7 +13,10 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const ResetPasswordPage = ({ navigation }: any) => {
+import { authServices } from "services";
+
+const ResetPasswordPage = ({ navigation, route }: any) => {
+  const { changePassword } = authServices();
   const schema = Yup.object({
     password: Yup.string().trim().required().min(4),
     confirmPassword: Yup.string()
@@ -33,9 +36,25 @@ const ResetPasswordPage = ({ navigation }: any) => {
       confirmPassword: "",
     },
   });
+
+  const changePasswordHandler = ({
+    password,
+    confirmPassword,
+  }: {
+    password: string;
+    confirmPassword: string;
+  }) => {
+    changePassword(route.params.token, password)
+      .then((response) => {
+        if (response.status === 200) {
+          navigation.navigate("Login");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
   return (
     <Screen>
-      <PageTitle>Registration</PageTitle>
+      <PageTitle>Change Password</PageTitle>
       <Card style={styles.boxShadow}>
         <Controller
           control={control}
@@ -67,14 +86,8 @@ const ResetPasswordPage = ({ navigation }: any) => {
           )}
           name="confirmPassword"
         />
-        <AuthButton onPress={handleSubmit(() => console.log("Reset"))}>
-          <ButtonText
-            green={true}
-            onPress={() => navigation.navigate("ChangePassword")}
-          >
-            {" "}
-            Confirm
-          </ButtonText>
+        <AuthButton onPress={handleSubmit(changePasswordHandler)}>
+          <ButtonText green={true}> Confirm</ButtonText>
           <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
         </AuthButton>
       </Card>
