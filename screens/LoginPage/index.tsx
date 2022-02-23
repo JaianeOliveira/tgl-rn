@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import React from "react";
 
 import {
@@ -19,7 +19,11 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
+import { authServices } from "services";
+
 const LoginPage = ({ navigation }: any) => {
+  const { loginUser } = authServices();
+
   const schema = Yup.object({
     email: Yup.string()
       .trim()
@@ -46,7 +50,16 @@ const LoginPage = ({ navigation }: any) => {
   const submit = (data: any) => {
     console.log(data);
     reset();
-    navigation.navigate("Home");
+    loginUser(data)
+      .then((response) => {
+        if (response.token.token) {
+          console.log(response);
+          navigation.navigate("Home");
+        } else {
+          console.log("Erro");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

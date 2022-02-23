@@ -12,6 +12,7 @@ module.exports = function (api) {
             "components/*": ["./components/*"],
             "global/*": ["./global/*"],
             "screens/*": ["./screens/*"],
+            "services/*": ["./services/*"],
           },
         },
       ],
