@@ -52,7 +52,7 @@ const AuthRoutes = () => {
             headerShown: false,
           }}
         />
-        {/* provisório */}
+
         <Stack.Screen
           name="Home"
           component={HomePage}

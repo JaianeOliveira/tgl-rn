@@ -13,19 +13,26 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const schema = Yup.object({
-  name: Yup.string().required("Digite um nome válido"),
-  email: Yup.string()
-    .trim()
-    .email("Digite um email válido")
-    .required("Digite um email"),
-  password: Yup.string()
-    .trim()
-    .required("Digite uma senha")
-    .min(4, "Digite uma senha válida"),
-});
+import { userServices, authServices } from "services";
+import { login } from "global/statesManager/authSlice";
+import { useDispatch } from "react-redux";
 
 const RegistrationPage = ({ navigation }: any) => {
+  const { createUser } = userServices();
+  const { loginUser } = authServices();
+  const dispatch = useDispatch();
+  const schema = Yup.object({
+    name: Yup.string().required("Digite um nome válido"),
+    email: Yup.string()
+      .trim()
+      .email("Digite um email válido")
+      .required("Digite um email"),
+    password: Yup.string()
+      .trim()
+      .required("Digite uma senha")
+      .min(4, "Digite uma senha válida"),
+  });
+
   const {
     control,
     handleSubmit,
@@ -39,6 +46,26 @@ const RegistrationPage = ({ navigation }: any) => {
       password: "",
     },
   });
+
+  const register = (data: {
+    email: string;
+    password: string;
+    name: string;
+  }) => {
+    createUser(data).then((response) => {
+      if (response.token.token) {
+        dispatch(
+          login({
+            email: response.user.email,
+            user: response.user.name,
+            token: response.token.token,
+          })
+        );
+        reset();
+        navigation.navigate("Home");
+      }
+    });
+  };
 
   return (
     <Screen>
@@ -89,13 +116,7 @@ const RegistrationPage = ({ navigation }: any) => {
           )}
           name="password"
         />
-        <AuthButton
-          onPress={handleSubmit((data) => {
-            console.log(data);
-            reset();
-            navigation.navigate("Login");
-          })}
-        >
+        <AuthButton onPress={handleSubmit(register)}>
           <ButtonText green={true}> Register</ButtonText>
           <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
         </AuthButton>

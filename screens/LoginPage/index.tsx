@@ -21,10 +21,13 @@ import * as Yup from "yup";
 
 import { authServices } from "services";
 
-import axios from "axios";
+import { login } from "global/statesManager/authSlice";
+import { useDispatch } from "react-redux";
 
 const LoginPage = ({ navigation }: any) => {
   const { loginUser } = authServices();
+
+  const dispatch = useDispatch();
 
   const schema = Yup.object({
     email: Yup.string()
@@ -55,6 +58,13 @@ const LoginPage = ({ navigation }: any) => {
       .then((response) => {
         if (response.token.token) {
           console.log(response);
+          dispatch(
+            login({
+              email: response.user.email,
+              user: response.user.name,
+              token: response.token.token,
+            })
+          );
           navigation.navigate("Home");
         } else {
           console.log(response);

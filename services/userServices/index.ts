@@ -9,7 +9,7 @@ const userServices = () => {
     return api
       .post("/user/create", data)
       .then((response) => {
-        return response.status;
+        return response.data;
       })
       .catch((error) => {
         console.log(error);

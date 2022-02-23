@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 
 import Colors from "global/constants/colors";
 
-import AuthRoutes from "./Routes/AuthRoutes";
+import { AuthRoutes } from "./Routes";
 
 import {
   useFonts,
@@ -23,7 +23,7 @@ import {
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 
-import MyStore from "global/statesManager/MyStore";
+import store from "global/statesManager";
 import { Provider as ReduxProvider } from "react-redux";
 
 export default function App() {
@@ -46,7 +46,7 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <ReduxProvider store={MyStore}>
+      <ReduxProvider store={store}>
         <ThemeProvider theme={Colors}>
           <AuthRoutes />
         </ThemeProvider>

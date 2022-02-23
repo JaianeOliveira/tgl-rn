@@ -5,7 +5,7 @@ import recentGamesSlice from "./recentGamesSlice";
 import cartSlice from "./cartSlice";
 import accountSlice from "./AccountSlice";
 
-const MyStore = configureStore({
+const store = configureStore({
   reducer: {
     auth: authSlice,
     game: gameSlice,
@@ -14,5 +14,5 @@ const MyStore = configureStore({
     account: accountSlice,
   },
 });
-export type RootState = ReturnType<typeof MyStore.getState>;
-export default MyStore;
+export type RootState = ReturnType<typeof store.getState>;
+export default store;
