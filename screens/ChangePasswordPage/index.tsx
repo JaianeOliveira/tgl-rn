@@ -3,7 +3,7 @@ import React from "react";
 
 import { Screen, PageTitle, ButtonText, AuthButton } from "./styles";
 import { Card } from "global/styles";
-import { Input } from "components";
+import { Input, ErrorMessage, SuccessMessage } from "components";
 
 import { AntDesign } from "@expo/vector-icons";
 
@@ -37,20 +37,15 @@ const ResetPasswordPage = ({ navigation, route }: any) => {
     },
   });
 
-  const changePasswordHandler = ({
-    password,
-    confirmPassword,
-  }: {
-    password: string;
-    confirmPassword: string;
-  }) => {
+  const changePasswordHandler = ({ password }: { password: string }) => {
     changePassword(route.params.token, password)
       .then((response) => {
         if (response.status === 200) {
+          SuccessMessage("Senha alterada com sucesso");
           navigation.navigate("Login");
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => ErrorMessage(err.response.data.message));
   };
   return (
     <Screen>

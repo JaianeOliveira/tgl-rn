@@ -3,7 +3,7 @@ import React from "react";
 
 import { Screen, PageTitle, ButtonText, AuthButton } from "./styles";
 import { Card } from "global/styles";
-import { Input } from "components";
+import { Input, ErrorMessage, SuccessMessage } from "components";
 
 import { AntDesign } from "@expo/vector-icons";
 
@@ -52,8 +52,8 @@ const RegistrationPage = ({ navigation }: any) => {
     password: string;
     name: string;
   }) => {
-    createUser(data).then((response) => {
-      if (response.token.token) {
+    createUser(data)
+      .then((response) => {
         dispatch(
           login({
             email: response.user.email,
@@ -62,9 +62,10 @@ const RegistrationPage = ({ navigation }: any) => {
           })
         );
         reset();
+        SuccessMessage("Usuário criado com sucesso!");
         navigation.navigate("Home");
-      }
-    });
+      })
+      .catch((err) => ErrorMessage(err.response.data.message));
   };
 
   return (

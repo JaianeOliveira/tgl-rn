@@ -10,7 +10,7 @@ import {
   ForgetPasswordButton,
 } from "./styles";
 import { Card } from "global/styles";
-import { Input } from "components";
+import { Input, ErrorMessage, SuccessMessage } from "components";
 
 import { AntDesign } from "@expo/vector-icons";
 
@@ -53,24 +53,19 @@ const LoginPage = ({ navigation }: any) => {
   });
 
   const submit = (data: { email: string; password: string }) => {
-    reset();
     loginUser(data)
       .then((response) => {
-        if (response.token.token) {
-          console.log(response);
-          dispatch(
-            login({
-              email: response.user.email,
-              user: response.user.name,
-              token: response.token.token,
-            })
-          );
-          navigation.navigate("Home");
-        } else {
-          console.log(response);
-        }
+        dispatch(
+          login({
+            email: response.user.email,
+            user: response.user.name,
+            token: response.token.token,
+          })
+        );
+        SuccessMessage("Logado");
+        navigation.navigate("Home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => ErrorMessage(err.response.data.message));
   };
 
   return (

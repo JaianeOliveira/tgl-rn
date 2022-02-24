@@ -26,6 +26,8 @@ import {
 import store from "global/statesManager";
 import { Provider as ReduxProvider } from "react-redux";
 
+import Toast from "react-native-toast-message";
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     Roboto_100Thin,
@@ -49,6 +51,7 @@ export default function App() {
       <ReduxProvider store={store}>
         <ThemeProvider theme={Colors}>
           <AuthRoutes />
+          <Toast />
         </ThemeProvider>
       </ReduxProvider>
     );

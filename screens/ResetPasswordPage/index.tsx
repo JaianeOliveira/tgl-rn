@@ -3,7 +3,7 @@ import React from "react";
 
 import { Screen, PageTitle, ButtonText, AuthButton } from "./styles";
 import { Card } from "global/styles";
-import { Input } from "components";
+import { Input, ErrorMessage } from "components";
 
 import { AntDesign } from "@expo/vector-icons";
 
@@ -37,11 +37,13 @@ const ResetPasswordPage = ({ navigation }: any) => {
   });
 
   const resetHandler = ({ email }: { email: string }) => {
-    resetPassword(email).then((response) => {
-      if (response.token) {
-        navigation.navigate("ChangePassword", { token: response.token });
-      }
-    });
+    resetPassword(email)
+      .then((response) => {
+        if (response.token) {
+          navigation.navigate("ChangePassword", { token: response.token });
+        }
+      })
+      .catch((error) => ErrorMessage(error.response.data.message));
   };
   return (
     <Screen>

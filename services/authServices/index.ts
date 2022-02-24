@@ -2,12 +2,9 @@ import api from "global/constants/api";
 
 const authServices = () => {
   async function loginUser(data: { email: string; password: string }) {
-    return api
-      .post("/login", data)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((err) => console.log(err));
+    return api.post("/login", data).then((response) => {
+      return response.data;
+    });
   }
 
   async function resetPassword(email: string) {
