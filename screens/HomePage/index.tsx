@@ -6,6 +6,8 @@ import { Screen } from "./styles";
 import { useSelector } from "react-redux";
 import { RootState } from "global/statesManager";
 
+import { Header } from "components";
+
 const HomePage = () => {
   const userData = useSelector((state: RootState) => state.auth);
 
@@ -19,6 +21,8 @@ const HomePage = () => {
 
   return (
     <Screen>
+      <Header />
+
       <Text>HomePage</Text>
       <Text>{userData.user}</Text>
     </Screen>
