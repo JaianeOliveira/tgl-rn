@@ -63,7 +63,7 @@ const RegistrationPage = ({ navigation }: any) => {
         );
         reset();
         SuccessMessage("Usuário criado com sucesso!");
-        navigation.navigate("Home");
+        navigation.navigate("PrivateRoutes");
       })
       .catch((err) => ErrorMessage(err.response.data.message));
   };

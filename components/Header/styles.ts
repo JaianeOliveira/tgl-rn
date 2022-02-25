@@ -4,7 +4,7 @@ import Colors from "global/constants/colors";
 
 export const HeaderContainer = styled.View`
   width: 100%;
-  height: 105px;
+  padding-top: 40px;
   background: transparent;
   border-bottom-color: #ebebeb;
   border-bottom-width: 1px;

@@ -11,6 +11,8 @@ import {
   HomePage,
 } from "screens";
 
+import PrivateRoutes from "./PrivateRoutes";
+
 const Stack = createNativeStackNavigator();
 
 const AuthRoutes = () => {
@@ -54,8 +56,8 @@ const AuthRoutes = () => {
         />
 
         <Stack.Screen
-          name="Home"
-          component={HomePage}
+          name="PrivateRoutes"
+          component={PrivateRoutes}
           options={{
             headerShown: false,
           }}

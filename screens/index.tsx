@@ -4,6 +4,8 @@ import RegistrationPage from "./RegistrationPage";
 import ChangePasswordPage from "./ChangePasswordPage";
 import ResetPasswordPage from "./ResetPasswordPage";
 import HomePage from "./HomePage";
+import AccountPage from "./AccountPage";
+import NewBetPage from "./NewBetPage";
 
 export {
   LoginPage,
@@ -12,4 +14,6 @@ export {
   ChangePasswordPage,
   ResetPasswordPage,
   HomePage,
+  AccountPage,
+  NewBetPage,
 };

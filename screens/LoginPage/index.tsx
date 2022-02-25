@@ -63,7 +63,7 @@ const LoginPage = ({ navigation }: any) => {
           })
         );
         SuccessMessage("Logado");
-        navigation.navigate("Home");
+        navigation.navigate("PrivateRoutes");
       })
       .catch((err) => ErrorMessage(err.response.data.message));
   };
