@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import Colors from "global/constants/colors";
 
 import { AuthRoutes } from "./Routes";
+import { StatusBar } from "expo-status-bar";
 
 import {
   useFonts,
@@ -53,6 +54,7 @@ export default function App() {
           <AuthRoutes />
           <Toast />
         </ThemeProvider>
+        <StatusBar />
       </ReduxProvider>
     );
   }

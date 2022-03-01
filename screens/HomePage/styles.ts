@@ -16,7 +16,7 @@ export const Title = styled.Text`
 
 export const FirstView = styled.View`
   flex-direction: row;
-  width: 100%;
+  width: 90%;
   align-items: flex-end;
   justify-content: space-between;
   margin-top: 40px;
@@ -30,4 +30,36 @@ export const TextButton = styled.Text`
 
 export const FilterButton = styled.TouchableOpacity`
   flex-direction: row;
+`;
+
+export const GameSelectorView = styled.View`
+  margin-top: 20px;
+  width: 90%;
+`;
+
+export const RecentGamesview = styled.View``;
+
+export const Container = styled.View<{ color: string }>`
+  padding: 5px 15px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  border-left-width: 6px;
+  border-left-color: ${(props) => props.color};
+`;
+
+export const ListNumbers = styled.Text`
+  color: ${Colors.textPrimary};
+  font-family: "Roboto_700Bold_Italic";
+  font-size: 20px;
+`;
+
+export const Details = styled.Text`
+  font-family: "Roboto_400Regular_Italic";
+  color: ${Colors.textSecondary};
+`;
+
+export const GameName = styled.Text<{ color: string }>`
+  font-family: "Roboto_700Bold_Italic";
+  color: ${(props) => props.color};
+  font-size: 20px;
 `;
