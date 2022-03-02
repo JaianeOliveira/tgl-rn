@@ -1,14 +1,44 @@
 import { View, Text, Modal } from "react-native";
 import React, { useState } from "react";
 
-const Cart = (props: { cartVisible: boolean }) => {
+import {
+  Backdrop,
+  CartContainer,
+  Title,
+  LightTitle,
+  TotalContainer,
+  SaveButton,
+  SaveButtonText,
+  ContentArea,
+} from "./styles";
+
+const Cart = (props: {
+  cartVisible: boolean;
+  setCartVisible: (newState: boolean) => any;
+}) => {
   return (
     <Modal
       animationType="slide"
       visible={props.cartVisible}
-      style={{ width: "50%", height: "50%" }}
+      transparent={true}
+      onRequestClose={() => props.setCartVisible(false)}
     >
-      <Text>Modaal</Text>
+      <Backdrop onPress={() => props.setCartVisible(false)}>
+        <CartContainer>
+          <ContentArea>
+            <Title>Cart</Title>
+            <View></View>
+            <TotalContainer>
+              <Title>Cart </Title>
+              <LightTitle>Total </LightTitle>
+              <LightTitle>R$ 0,00</LightTitle>
+            </TotalContainer>
+          </ContentArea>
+          <SaveButton>
+            <SaveButtonText>Save</SaveButtonText>
+          </SaveButton>
+        </CartContainer>
+      </Backdrop>
     </Modal>
   );
 };
