@@ -44,9 +44,15 @@ const HomePage = () => {
 
   const { listGames } = gamesServices();
   const { myAccount } = userServices();
+
   const [showFilters, setShowFilters] = useState(false);
   const dispatch = useDispatch();
 
+  const [withFilter, setWithFilter] = useState<number[]>([]);
+
+  const filtered = recentGames.filter((item) =>
+    withFilter.includes(item.game_id)
+  );
   useEffect(() => {
     listGames().then((response) => dispatch(getData(response)));
   }, []);
@@ -64,6 +70,8 @@ const HomePage = () => {
       </Screen>
     );
   }
+
+  let arrRecentGames = withFilter.length > 0 ? filtered : recentGames;
 
   const getColor = (gameId: number) => {
     let color = gamesData.types.find((game) => game.id === gameId)?.color;
@@ -88,8 +96,24 @@ const HomePage = () => {
       {showFilters ? (
         <GameSelectorView>
           {gamesData.types.map((game) => (
-            <GameSelector color={game.color}>
-              <GameSelectorText color={game.color}>
+            <GameSelector
+              key={Math.random()}
+              color={game.color}
+              includes={withFilter.includes(game.id)}
+              onPress={() => {
+                if (withFilter.includes(game.id)) {
+                  setWithFilter((prevState) =>
+                    prevState.filter((item) => item !== game.id)
+                  );
+                } else {
+                  setWithFilter((prevState) => [...prevState, game.id]);
+                }
+              }}
+            >
+              <GameSelectorText
+                color={game.color}
+                includes={withFilter.includes(game.id)}
+              >
                 {game.type}
               </GameSelectorText>
             </GameSelector>
@@ -99,8 +123,10 @@ const HomePage = () => {
         <></>
       )}
 
-      <ScrollView style={{ marginTop: 20 }}>
-        {recentGames.map((item) => {
+      <ScrollView
+        style={{ marginTop: 20, width: Dimensions.get("window").width * 0.9 }}
+      >
+        {arrRecentGames.map((item) => {
           let color = gamesData.types.find(
             (game) => game.id === item.game_id
           )?.color;

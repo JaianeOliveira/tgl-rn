@@ -19,7 +19,10 @@ export const Card = styled.View`
   box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.2);
 `;
 
-export const GameSelector = styled.TouchableOpacity<{ color: string }>`
+export const GameSelector = styled.TouchableOpacity<{
+  color: string;
+  includes: boolean;
+}>`
   border: 2px solid ${(props) => props.color};
   border-radius: 100px;
   padding: 7px 25px;
@@ -27,11 +30,16 @@ export const GameSelector = styled.TouchableOpacity<{ color: string }>`
   height: 40px;
   width: 100%;
   margin-bottom: 10px;
+  background-color: ${(props) =>
+    props.includes ? props.color : "transparent"};
 `;
 
-export const GameSelectorText = styled.Text<{ color: string }>`
+export const GameSelectorText = styled.Text<{
+  color: string;
+  includes: boolean;
+}>`
   text-align: center;
-  color: ${(props) => props.color};
+  color: ${(props) => (props.includes ? "#FFF" : props.color)};
   font-size: 17px;
   font-family: "Roboto_700Bold_Italic";
 `;
