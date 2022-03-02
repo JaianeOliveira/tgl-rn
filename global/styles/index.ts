@@ -21,7 +21,7 @@ export const Card = styled.View`
 
 export const GameSelector = styled.TouchableOpacity<{
   color: string;
-  includes: boolean;
+  includes?: boolean;
 }>`
   border: 2px solid ${(props) => props.color};
   border-radius: 100px;
@@ -36,7 +36,7 @@ export const GameSelector = styled.TouchableOpacity<{
 
 export const GameSelectorText = styled.Text<{
   color: string;
-  includes: boolean;
+  includes?: boolean;
 }>`
   text-align: center;
   color: ${(props) => (props.includes ? "#FFF" : props.color)};

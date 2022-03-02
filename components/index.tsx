@@ -2,8 +2,10 @@ import Input from "./Input";
 import AuthButton from "./AuthButton";
 import SuccessMessage from "./SuccessMessage";
 import ErrorMessage from "./ErrorMessage";
+import WarningMessage from "./WarningMessage";
 import Header from "./Header";
 import RecentGameItem from "./RecentGameItem";
+import Cart from "./Cart";
 
 export {
   Input,
@@ -12,4 +14,6 @@ export {
   SuccessMessage,
   Header,
   RecentGameItem,
+  WarningMessage,
+  Cart,
 };
