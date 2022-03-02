@@ -40,6 +40,7 @@ const ResetPasswordPage = ({ navigation }: any) => {
     resetPassword(email)
       .then((response) => {
         if (response.token) {
+          reset();
           navigation.navigate("ChangePassword", { token: response.token });
         }
       })

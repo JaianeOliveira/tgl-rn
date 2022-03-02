@@ -42,6 +42,7 @@ const ResetPasswordPage = ({ navigation, route }: any) => {
       .then((response) => {
         if (response.status === 200) {
           SuccessMessage("Senha alterada com sucesso");
+          reset();
           navigation.navigate("Login");
         }
       })
