@@ -56,6 +56,7 @@ export const ListNumbers = styled.Text`
 export const Details = styled.Text`
   font-family: "Roboto_400Regular_Italic";
   color: ${Colors.textSecondary};
+  font-size: 17px;
 `;
 
 export const GameName = styled.Text<{ color: string }>`

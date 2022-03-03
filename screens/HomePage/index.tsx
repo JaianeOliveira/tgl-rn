@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Dimensions,
-  FlatList,
-} from "react-native";
+import { Text, ScrollView, Dimensions, ActivityIndicator } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import React, { useState, useEffect } from "react";
 
@@ -30,18 +23,17 @@ import { RootState } from "global/statesManager";
 import Colors from "global/constants/colors";
 import { formatNumber } from "global/utils";
 
-import { Header, RecentGameItem } from "components";
+import { Header } from "components";
 
 import { gamesServices, userServices } from "services";
 import { getData } from "global/statesManager/gameSlice";
 import { setRecentGames } from "global/statesManager/recentGamesSlice";
 import { useDispatch } from "react-redux";
 
-const HomePage = () => {
+const HomePage = ({ navigation }: any) => {
   const gamesData = useSelector((state: RootState) => state.game);
   const userData = useSelector((state: RootState) => state.auth);
   const recentGames = useSelector((state: RootState) => state.recentGames);
-
   const { listGames } = gamesServices();
   const { myAccount } = userServices();
 
@@ -58,15 +50,19 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    myAccount(`${userData.token}`).then((response) =>
-      dispatch(setRecentGames(response.bets))
-    );
+    const updateList = navigation.addListener("focus", () => {
+      myAccount(`${userData.token}`).then((response) =>
+        dispatch(setRecentGames(response.bets))
+      );
+    });
+
+    return updateList;
   }, []);
 
   if (!userData || !gamesData || !recentGames) {
     return (
       <Screen>
-        <Text>Carregando...</Text>
+        <ActivityIndicator size="large" color={Colors.greenPrimary} />
       </Screen>
     );
   }
@@ -126,27 +122,31 @@ const HomePage = () => {
       <ScrollView
         style={{ marginTop: 20, width: Dimensions.get("window").width * 0.9 }}
       >
-        {arrRecentGames.map((item) => {
-          let color = gamesData.types.find(
-            (game) => game.id === item.game_id
-          )?.color;
+        {arrRecentGames.length ? (
+          arrRecentGames.map((item) => {
+            let color = gamesData.types.find(
+              (game) => game.id === item.game_id
+            )?.color;
 
-          let type = gamesData.types.find(
-            (game) => game.id === item.game_id
-          )?.type;
+            let type = gamesData.types.find(
+              (game) => game.id === item.game_id
+            )?.type;
 
-          return (
-            <Container color={color ? color : "#707070"} key={item.id}>
-              <ListNumbers>{item.choosen_numbers}</ListNumbers>
-              <Details>
-                {new Date(item.created_at).toLocaleDateString()}
-                {" - "}
-                {formatNumber(item.price)}
-              </Details>
-              <GameName color={color ? color : "#707070"}>{type}</GameName>
-            </Container>
-          );
-        })}
+            return (
+              <Container color={color ? color : "#707070"} key={item.id}>
+                <ListNumbers>{item.choosen_numbers}</ListNumbers>
+                <Details>
+                  {new Date(item.created_at).toLocaleDateString()}
+                  {" - "}
+                  {formatNumber(item.price)}
+                </Details>
+                <GameName color={color ? color : "#707070"}>{type}</GameName>
+              </Container>
+            );
+          })
+        ) : (
+          <Details>Nenhum game recente</Details>
+        )}
       </ScrollView>
     </Screen>
   );

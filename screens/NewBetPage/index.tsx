@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Dimensions } from "react-native";
+import { Text, ScrollView, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 
 import {
@@ -26,6 +26,7 @@ import { Header, WarningMessage, Cart, SuccessMessage } from "components";
 import { GameSelector, GameSelectorText } from "global/styles";
 
 import Icon from "react-native-vector-icons/Ionicons";
+import Colors from "global/constants/colors";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "global/statesManager";
@@ -85,7 +86,7 @@ const NewBet = ({ navigation }: any) => {
   if (!gameData) {
     return (
       <Screen>
-        <Text>Carregando...</Text>
+        <ActivityIndicator size="large" color={Colors.greenPrimary} />
       </Screen>
     );
   }

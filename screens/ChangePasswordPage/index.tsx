@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
 
 import { Screen, PageTitle, ButtonText, AuthButton } from "./styles";
 import { Card } from "global/styles";
@@ -16,6 +16,7 @@ import * as Yup from "yup";
 import { authServices } from "services";
 
 const ResetPasswordPage = ({ navigation, route }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { changePassword } = authServices();
   const schema = Yup.object({
     password: Yup.string().trim().required().min(4),
@@ -38,15 +39,20 @@ const ResetPasswordPage = ({ navigation, route }: any) => {
   });
 
   const changePasswordHandler = ({ password }: { password: string }) => {
+    setIsLoading(true);
     changePassword(route.params.token, password)
       .then((response) => {
         if (response.status === 200) {
           SuccessMessage("Senha alterada com sucesso");
           reset();
+          setIsLoading(false);
           navigation.navigate("Login");
         }
       })
-      .catch((err) => ErrorMessage(err.response.data.message));
+      .catch((err) => {
+        setIsLoading(false);
+        ErrorMessage(err.response.data.message);
+      });
   };
   return (
     <Screen>
@@ -83,8 +89,20 @@ const ResetPasswordPage = ({ navigation, route }: any) => {
           name="confirmPassword"
         />
         <AuthButton onPress={handleSubmit(changePasswordHandler)}>
-          <ButtonText green={true}> Confirm</ButtonText>
-          <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
+          <ButtonText green={true}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color={Colors.greenPrimary} />
+            ) : (
+              "Confirm"
+            )}
+          </ButtonText>
+          {!isLoading && (
+            <AntDesign
+              name="arrowright"
+              size={32}
+              color={Colors.greenPrimary}
+            />
+          )}
         </AuthButton>
       </Card>
       <AuthButton onPress={() => navigation.navigate("Login")}>

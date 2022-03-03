@@ -7,6 +7,7 @@ import Header from "./Header";
 import RecentGameItem from "./RecentGameItem";
 import Cart from "./Cart";
 import CartItem from "./CartItem";
+import ModalComponent from "./Modal";
 
 export {
   Input,
@@ -18,4 +19,5 @@ export {
   WarningMessage,
   Cart,
   CartItem,
+  ModalComponent,
 };

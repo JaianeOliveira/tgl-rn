@@ -1,5 +1,5 @@
-import { StyleSheet, Alert } from "react-native";
-import React from "react";
+import { StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
 
 import {
   Screen,
@@ -26,6 +26,7 @@ import { useDispatch } from "react-redux";
 
 const LoginPage = ({ navigation }: any) => {
   const { loginUser } = authServices();
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -53,6 +54,7 @@ const LoginPage = ({ navigation }: any) => {
   });
 
   const submit = (data: { email: string; password: string }) => {
+    setIsLoading(true);
     loginUser(data)
       .then((response) => {
         dispatch(
@@ -64,10 +66,11 @@ const LoginPage = ({ navigation }: any) => {
         );
         SuccessMessage("Logado");
         reset();
+        setIsLoading(false);
         navigation.navigate("PrivateRoutes");
       })
       .catch((err) => {
-        console.log(err);
+        setIsLoading(false);
         ErrorMessage(err.response.data.message);
       });
   };
@@ -114,8 +117,20 @@ const LoginPage = ({ navigation }: any) => {
           </ForgetPasswordButtonText>
         </ForgetPasswordButton>
         <AuthButton onPress={handleSubmit(submit)}>
-          <ButtonText green={true}> Log In</ButtonText>
-          <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
+          <ButtonText green={true}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color={Colors.greenPrimary} />
+            ) : (
+              "Log In"
+            )}
+          </ButtonText>
+          {!isLoading && (
+            <AntDesign
+              name="arrowright"
+              size={32}
+              color={Colors.greenPrimary}
+            />
+          )}
         </AuthButton>
       </Card>
       <AuthButton onPress={() => navigation.navigate("Registration")}>

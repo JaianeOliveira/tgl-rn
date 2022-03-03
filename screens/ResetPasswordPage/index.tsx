@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
 
 import { Screen, PageTitle, ButtonText, AuthButton } from "./styles";
 import { Card } from "global/styles";
@@ -16,6 +16,7 @@ import * as Yup from "yup";
 import { authServices } from "services";
 
 const ResetPasswordPage = ({ navigation }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { resetPassword } = authServices();
 
   const schema = Yup.object({
@@ -37,14 +38,19 @@ const ResetPasswordPage = ({ navigation }: any) => {
   });
 
   const resetHandler = ({ email }: { email: string }) => {
+    setIsLoading(true);
     resetPassword(email)
       .then((response) => {
         if (response.token) {
           reset();
+          setIsLoading(false);
           navigation.navigate("ChangePassword", { token: response.token });
         }
       })
-      .catch((error) => ErrorMessage(error.response.data.message));
+      .catch((error) => {
+        setIsLoading(false);
+        ErrorMessage(error.response.data.message);
+      });
   };
   return (
     <Screen>
@@ -66,8 +72,20 @@ const ResetPasswordPage = ({ navigation }: any) => {
           name="email"
         />
         <AuthButton onPress={handleSubmit(resetHandler)}>
-          <ButtonText green={true}> Send Link</ButtonText>
-          <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
+          <ButtonText green={true}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color={Colors.greenPrimary} />
+            ) : (
+              "Send Link"
+            )}
+          </ButtonText>
+          {!isLoading && (
+            <AntDesign
+              name="arrowright"
+              size={32}
+              color={Colors.greenPrimary}
+            />
+          )}
         </AuthButton>
       </Card>
       <AuthButton onPress={() => navigation.goBack()}>

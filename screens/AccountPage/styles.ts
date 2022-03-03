@@ -49,3 +49,34 @@ export const ListButtonItem = styled.TouchableOpacity`
   align-items: flex-end;
   padding: 10px;
 `;
+
+export const ModalContentArea = styled.View`
+  padding: 30px 20px;
+  flex: 1;
+  justify-content: flex-start;
+`;
+
+export const ModalButtonsContainer = styled.View`
+  flex-direction: row;
+  width: 100%;
+  height: 90px;
+  border-top-width: 1px;
+  border-top-color: #e2e2e2;
+  justify-content: space-between;
+`;
+
+export const ModalButton = styled.TouchableOpacity`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalButtonSave = styled(Title)`
+  font-size: 28px;
+  color: ${Colors.greenPrimary};
+`;
+
+export const ModalButtonCancel = styled(Title)`
+  font-size: 28px;
+  color: ${Colors.textPrimary};
+`;

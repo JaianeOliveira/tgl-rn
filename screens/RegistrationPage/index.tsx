@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
 
 import { Screen, PageTitle, ButtonText, AuthButton } from "./styles";
 import { Card } from "global/styles";
@@ -18,6 +18,7 @@ import { login } from "global/statesManager/authSlice";
 import { useDispatch } from "react-redux";
 
 const RegistrationPage = ({ navigation }: any) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { createUser } = userServices();
   const { loginUser } = authServices();
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const RegistrationPage = ({ navigation }: any) => {
     password: string;
     name: string;
   }) => {
+    setIsLoading(true);
     createUser(data)
       .then((response) => {
         dispatch(
@@ -62,10 +64,14 @@ const RegistrationPage = ({ navigation }: any) => {
           })
         );
         reset();
+        setIsLoading(false);
         SuccessMessage("Usuário criado com sucesso!");
         navigation.navigate("PrivateRoutes");
       })
-      .catch((err) => ErrorMessage(err.response.data.message));
+      .catch((err) => {
+        setIsLoading(false);
+        ErrorMessage(err.response.data.message);
+      });
   };
 
   return (
@@ -118,8 +124,20 @@ const RegistrationPage = ({ navigation }: any) => {
           name="password"
         />
         <AuthButton onPress={handleSubmit(register)}>
-          <ButtonText green={true}> Register</ButtonText>
-          <AntDesign name="arrowright" size={32} color={Colors.greenPrimary} />
+          <ButtonText green={true}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color={Colors.greenPrimary} />
+            ) : (
+              "Register"
+            )}
+          </ButtonText>
+          {!isLoading && (
+            <AntDesign
+              name="arrowright"
+              size={32}
+              color={Colors.greenPrimary}
+            />
+          )}
         </AuthButton>
       </Card>
       <AuthButton onPress={() => navigation.goBack()}>
