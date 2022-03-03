@@ -136,7 +136,7 @@ const HomePage = () => {
           )?.type;
 
           return (
-            <Container color={color ? color : "#707070"}>
+            <Container color={color ? color : "#707070"} key={item.id}>
               <ListNumbers>{item.choosen_numbers}</ListNumbers>
               <Details>
                 {new Date(item.created_at).toLocaleDateString()}

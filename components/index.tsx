@@ -6,6 +6,7 @@ import WarningMessage from "./WarningMessage";
 import Header from "./Header";
 import RecentGameItem from "./RecentGameItem";
 import Cart from "./Cart";
+import CartItem from "./CartItem";
 
 export {
   Input,
@@ -16,4 +17,5 @@ export {
   RecentGameItem,
   WarningMessage,
   Cart,
+  CartItem,
 };

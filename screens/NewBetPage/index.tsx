@@ -21,22 +21,66 @@ import {
   ActionButtonOutlineText,
   ActionButtonText,
 } from "./styles";
-import { Header, WarningMessage, Cart } from "components";
+import { Header, WarningMessage, Cart, SuccessMessage } from "components";
 
 import { GameSelector, GameSelectorText } from "global/styles";
 
 import Icon from "react-native-vector-icons/Ionicons";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "global/statesManager";
 
-const NewBet = () => {
-  const gameData = useSelector((state: RootState) => state.game);
+import { addItem } from "global/statesManager/cartSlice";
 
+const NewBet = ({ navigation }: any) => {
+  const gameData = useSelector((state: RootState) => state.game);
+  const { cart } = useSelector((state: RootState) => state.cart);
   const [selectedGame, setSelectedGame] = useState(gameData.types[0]);
+  const dispatch = useDispatch();
 
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+  const [cartItems, setCartItems] = useState();
   const [cartVisible, setCartVisible] = useState(false);
+
+  const addToCart = () => {
+    if (selectedNumbers.length < selectedGame.max_number) {
+      let faltam = selectedGame.max_number - selectedNumbers.length;
+      WarningMessage(
+        `Complete seu jogo. Ainda ${
+          faltam === 1 ? "falta" : "faltam"
+        } ${faltam} ${faltam === 1 ? "número" : "números"}.`
+      );
+    } else if (
+      selectedNumbers.length === selectedGame.max_number &&
+      cart.some(
+        (cartItem) =>
+          cartItem.bet.every((item) => selectedNumbers.includes(item)) &&
+          cartItem.gameName === selectedGame.type
+      )
+    ) {
+      WarningMessage("Você já fez essa aposta");
+    } else if (
+      selectedNumbers.length === selectedGame.max_number &&
+      !cart.some(
+        (cartItem) =>
+          cartItem.bet.every((item) => selectedNumbers.includes(item)) &&
+          cartItem.gameName === selectedGame.type
+      )
+    ) {
+      dispatch(
+        addItem({
+          id: new Date().getTime(),
+          game_id: selectedGame.id,
+          gameName: selectedGame.type,
+          price: selectedGame.price,
+          color: selectedGame.color,
+          bet: selectedNumbers.sort((a, b) => a - b),
+        })
+      );
+      setSelectedNumbers([]);
+      SuccessMessage("Seu jogo foi adicionado ao carrinho");
+    }
+  };
 
   if (!gameData) {
     return (
@@ -59,7 +103,11 @@ const NewBet = () => {
               FOR {selectedGame.type.toUpperCase()}
             </PageTitleLight>
           </PageTitleContainer>
-          <Cart cartVisible={cartVisible} />
+          <Cart
+            cartVisible={cartVisible}
+            setCartVisible={setCartVisible}
+            navigation={navigation.navigate}
+          />
           <CartButton
             style={{ elevation: 3 }}
             onPress={() => setCartVisible(true)}
@@ -74,8 +122,8 @@ const NewBet = () => {
           <GameSelectorContainer>
             {gameData.types.map((game) => (
               <GameSelector
-                color={game.color}
                 key={Math.random()}
+                color={game.color}
                 includes={selectedGame.id === game.id}
                 onPress={() => setSelectedGame(game)}
               >
@@ -94,6 +142,7 @@ const NewBet = () => {
           <NumberTable>
             {[...new Array(selectedGame.range)].map((item, index) => (
               <NumberButton
+                key={index + 1}
                 color={selectedGame.color}
                 selected={selectedNumbers.includes(index + 1)}
                 onPress={() => {
@@ -101,9 +150,6 @@ const NewBet = () => {
                     setSelectedNumbers(
                       selectedNumbers.filter((number) => number !== index + 1)
                     );
-                    console.log(selectedNumbers);
-
-                    return;
                   } else if (
                     !selectedNumbers.includes(index + 1) &&
                     selectedNumbers.length >= selectedGame.max_number
@@ -114,7 +160,6 @@ const NewBet = () => {
                       ...prevState,
                       index + 1,
                     ]);
-                    console.log(selectedNumbers);
                   }
                 }}
               >
@@ -147,7 +192,7 @@ const NewBet = () => {
           >
             <ActionButtonOutlineText>Complete Game</ActionButtonOutlineText>
           </ActionButtonOutline>
-          <ActionButton>
+          <ActionButton onPress={addToCart}>
             <ActionButtonText>
               Add to Cart
               <Icon name="cart-outline" size={24} color="#FFF" />
