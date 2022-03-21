@@ -36,3 +36,9 @@ Aplicativo de apostas TGL feito com React-Native.
 
 - [@JaianeOliveira](https://github.com/JaianeOliveira/)
 
+## Referência
+
+ - [API](https://github.com/lubysoftware/LAB_TGL_API)
+
+
+
